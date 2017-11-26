@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AngularJS Plunker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="elastislide.css" />
+
+  <script data-require="angular.js@1.5.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js" data-semver="1.5.11"></script>
+  <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+
+  <div class="row">
+    <div class="scrollmenu">
+      <a ng-repeat="x in ingredients">
+        <img ng-src="{{x.cat}}" ng-click="getContents(x.contents)" />
+      </a>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="scrollmenu">
+      <a ng-click="dropIngredient(x.color)" ng-repeat="x in currContent">
+        <span ng-style="{'color':x.color}">{{x.name}}</span>
+      </a>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  
+  <div class="row">
+    <div class="col">
+      <center>
+        <img ng-src="{{fire}}" />
+        <div id='currTemp'>{{Temp.currTemp}}</div>
+      </center>
+    </div>
+    <div class="col" id="cooker" style="border-style: solid;
+border-width: 0px 7px 4px 7px;">
+     <!-- <center>
+        <img ng-src="{{pan}}" />
+      </center>-->
+      <center>
+        <div id="site" >
+          <div id="snowZone"></div>
+        </div>
+      </center>
+    </div>
+    <div class="col">
+      <center>
+        <img style="width:50px;height:50px" src='https://openclipart.org/download/234252/animationclock.svg' ng-click="Wait.start()"/>
+        <div id='currWait'>{{Wait.currState.time}}</div>
+      </center>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col">
+      <center>
+        <img ng-src="{{minus}}" ng-click="Temp.dec()" />
+        <img ng-src="{{plus}}" ng-click="Temp.inc()" /></center>
+    </div>
+    <div class="col" style="margin-top:-30px;">
+      <center>
+        <img src="{{stove}}" />
+        <img ng-src="{{minus}}" ng-click="stir()" />
+        <img ng-src="{{plus}}" ng-click="procedure.animateProcedure()" />
+      </center>
+    </div>
+    <div class="col">
+      <center>
+        <img ng-src="{{minus}}" ng-click="Wait.dec()" />
+        <img ng-src="{{plus}}" ng-click="Wait.inc()" /></center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success" ng-repeat="x in procedure.current track by $index" >
+          {{x.shortDesc}} - {{x.params}}</li>
+       </ul>
+    </div>
+  </div>
+   <!--<li class="list-group-item list-group-item-info">100 Continue: The client should continue with its request.</li>
+        <li class="list-group-item list-group-item-warning">503 Service Unavailable: The server is temporarily unable to handle the request.</li>
+        <li class="list-group-item list-group-item-danger">400 Bad Request: The request cannot be fulfilled due to bad syntax.</li>
+    -->
+</body>
+
+</html>

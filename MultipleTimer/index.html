@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="script.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<button type="button" ng-click="addRow()">add one row</button>
+<br/><br/>
+<div ng-repeat="x in noOfClocks">
+  <div w3-test-directive  detail='{{x}}'></div>
+</div>
+
+</body>
+</html>
